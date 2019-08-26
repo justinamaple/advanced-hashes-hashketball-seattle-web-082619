@@ -1,4 +1,5 @@
 require "pry"
+<<<<<<< HEAD
 
 # Set Up
 def game_hash
@@ -165,4 +166,118 @@ def long_name_steals_a_ton?
   player_with_most_steals = get_name_with_biggest_stat(:steals)
   
   longest_name == player_with_most_steals ? true : false
+=======
+
+$BNETS_NAME_TO_NUMBER = 
+  {
+    "Alan Anderson" => {
+      :number => 0,
+      :team => "Brooklyn Nets"
+    }, 
+    "Reggie Evans" => {
+      :number => 30,
+      :team => "Brooklyn Nets"
+    },
+    "Brook Lopez" => {
+      :number => 11,
+      :team => "Brooklyn Nets"
+    },
+    "Mason Plumlee" => {
+      :number => 1,
+      :team => "Brooklyn Nets"
+    },
+    "Jason Terry" => {
+      :number => 31,
+      :team => "Brooklyn Nets"
+    }
+  }
+  
+$CHORNETS_NAME_TO_NUMBER = {
+  "Jeff Adrien" => 4,
+  "Bismack Biyombo" => 0,
+  "DeSagna Diop" => 2,
+  "Ben Gordon" => 8,
+  "Kemba Walker" => 33
+}
+
+# Set Up
+def game_hash
+  {
+    :home => make_team("Brooklyn Nets", ["Black", "White"]),
+    :away => make_team("Charlotte Hornets", ["Turqoise", "Purple"])
+  }
+end
+
+def make_team(team_name, colors)
+  team = {
+    :team_name => team_name,
+    :colors => colors,
+    :players => {}
+  }
+  
+  if team_name == "Brooklyn Nets"
+    team[:players]["Alan Anderson"] = 
+      make_player([0, 16, 22, 12, 12, 3, 1, 1])
+    team[:players]["Reggie Evans"] = 
+      make_player([30, 13, 12, 12, 12, 12, 12, 7])
+    team[:players]["Brook Lopez"] = 
+      make_player([11, 17, 17, 19, 10, 3, 1, 15])
+    team[:players]["Mason Plumlee"] = 
+      make_player([1, 19, 26, 11, 6, 3, 8, 5])
+    team[:players]["Jason Terry"] = 
+      make_player([31, 15, 19, 2, 2, 4, 11, 1])
+  end
+  
+  if team_name == "Charlotte Hornets"
+    team[:players]["Jeff Adrien"] = 
+      make_player([4, 18, 10, 1, 1, 2, 7, 2])
+    team[:players]["Bismack Biyombo"] = 
+      make_player([0, 16, 12, 4, 7, 22, 15, 10])
+    team[:players]["DeSagna Diop"] = 
+      make_player([2, 14, 24, 12, 12, 4, 5, 5])
+    team[:players]["Ben Gordon"] = 
+      make_player([8, 15, 33, 3, 2, 1, 1, 0])
+    team[:players]["Kemba Walker"] =
+      make_player([33, 15, 6, 12, 12, 7, 5, 12])
+  end
+  
+  team
+end
+
+def make_player(stats)
+  # Names should be added to this...
+  {
+    :number => stats[0],
+    :shoe => stats[1],
+    :points => stats[2],
+    :rebounds => stats[3],
+    :assists => stats[4],
+    :steals => stats[5],
+    :blocks => stats[6],
+    :slam_dunks => stats[7], 
+  }
+end
+
+# Methods 
+def num_points_scored(player_name)
+  hash = game_hash
+  hash.each do |game_stats|
+    game_stats.each do |team|
+      p team
+      if team[:players][player_name]
+        return team[:players][player_name][:points]
+      end
+    end
+  end
+end
+
+def get_points_by_number(team, player_number)
+  hash = game_hash
+  
+  player = hash[team][:players].each do |player| 
+    if player[:number] == player_number
+      return player[:points]
+    end
+  end
+>>>>>>> 09d714849bf93ddac1f6e3d3cf8617a7020afb26
 end
